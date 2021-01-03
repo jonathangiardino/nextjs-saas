@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useAuth } from "@lib/auth";
 import styles from "@styles/Home.module.css";
-import { Button, Code, Text, Heading } from "@chakra-ui/core";
+import { Button, Code, Text, Heading, Icon } from "@chakra-ui/core";
 
 export default function Home() {
   const auth = useAuth();
@@ -13,14 +13,19 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Heading>Welcome to Next Saas</Heading>
+        <Heading mb={4}>Hello There</Heading>
+        <Icon name="logo" size="48px"></Icon>
 
         {auth.user ? (
-          <Button onClick={(e) => auth.signout()}>Sign Out</Button>
+          <Button mt={4} onClick={(e) => auth.signout()}>
+            Sign Out
+          </Button>
         ) : (
-          <Button onClick={(e) => auth.signinWithGitHub()}>Sign in</Button>
+          <Button mt={4} onClick={(e) => auth.signinWithGitHub()}>
+            Sign in
+          </Button>
         )}
-        <Text>
+        <Text mt={4}>
           <Code>{auth.user?.email}</Code>
         </Text>
       </main>
