@@ -1,8 +1,10 @@
 import React from "react";
 import NextLink from "next/link";
 import { Box, Button, Flex, Link, Avatar, Icon } from "@chakra-ui/core";
+import { useAuth } from "@lib/auth";
 
 const DashboardShell = ({ children }) => {
+  const auth = useAuth();
   return (
     <Box backgroundColor="gray.100" h="100vh">
       <Flex
@@ -25,7 +27,7 @@ const DashboardShell = ({ children }) => {
           <Flex align="center">
             <NextLink href="/" passHref>
               <Link>
-                <Icon name="logo" size="24px" mr={8} />
+                <Icon name="logo" size="40px" mr={8} />
               </Link>
             </NextLink>
             <NextLink href="/sites" passHref>
@@ -38,7 +40,7 @@ const DashboardShell = ({ children }) => {
           <Flex justifyContent="center" alignItems="center">
             <NextLink href="/account" passHref>
               <Link>
-                <Avatar size="sm" />
+                <Avatar size="sm" src={auth?.user?.photoUrl} />
               </Link>
             </NextLink>
           </Flex>
