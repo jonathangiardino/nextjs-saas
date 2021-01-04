@@ -10,7 +10,7 @@ const Dashboard = () => {
   if (!auth.user) {
     return <Text>Loading...</Text>;
   }
-  return <FreePlanEmptyState />;
+  return <EmptyState />;
 };
 
 export default Dashboard;
