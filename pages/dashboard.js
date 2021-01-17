@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Text, Avatar, Icon } from "@chakra-ui/core";
+import {
+  Box,
+  Button,
+  Flex,
+  Text,
+  Avatar,
+  Spinner,
+  Heading,
+} from "@chakra-ui/react";
 import { useAuth } from "@lib/auth";
 
 import EmptyState from "@components/EmptyState";
@@ -8,9 +16,22 @@ const Dashboard = () => {
   const auth = useAuth();
 
   if (!auth.user) {
-    return <Text>Loading...</Text>;
+    return (
+      <Flex
+        h="100vh"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Spinner size="xl" />
+      </Flex>
+    );
   }
-  return <EmptyState />;
+  return (
+    <>
+      <EmptyState />;
+    </>
+  );
 };
 
 export default Dashboard;
