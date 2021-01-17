@@ -1,7 +1,9 @@
 import Head from "next/head";
+import NextLink from "next/link";
 import { useAuth } from "@lib/auth";
 import styles from "@styles/Home.module.css";
-import { Button, Code, Text, Heading, Icon } from "@chakra-ui/core";
+import { Button, Code, Text, Heading, Icon, Link, Box } from "@chakra-ui/react";
+import { Logo } from "../styles/theme";
 
 export default function Home() {
   const auth = useAuth();
@@ -13,21 +15,27 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Heading mb={4}>Hello There</Heading>
-        <Icon name="logo" size="48px"></Icon>
+        <Heading mb={4}>
+          {auth.user
+            ? `Hello ${auth.user?.name.split(" ").slice(0, 1).join(" ")}`
+            : "Please Log in"}
+        </Heading>
+        <Logo boxSize={12}></Logo>
 
         {auth.user ? (
-          <Button mt={4} onClick={(e) => auth.signout()}>
-            Sign Out
-          </Button>
+          <Box d="flex" flexDirection="column">
+            <NextLink href="/dashboard" passHref>
+              <Button mt={4}>Go to dashboard</Button>
+            </NextLink>
+            <Button variant="ghost" mt={4} onClick={(e) => auth.signout()}>
+              Sign Out
+            </Button>
+          </Box>
         ) : (
           <Button mt={4} onClick={(e) => auth.signinWithGitHub()}>
             Sign in
           </Button>
         )}
-        <Text mt={4}>
-          <Code>{auth.user?.email}</Code>
-        </Text>
       </main>
 
       <footer className={styles.footer}>

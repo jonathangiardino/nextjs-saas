@@ -1,16 +1,15 @@
-import { ThemeProvider, CSSReset } from "@chakra-ui/core";
+import { ChakraProvider } from "@chakra-ui/react";
 import { AuthProvider } from "../lib/auth";
 import "../styles/globals.css";
-import theme from "../styles/theme";
+import { theme } from "../styles/theme";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
+    <ChakraProvider theme={theme} resetCSS={true}>
       <AuthProvider>
-        <CSSReset />
         <Component {...pageProps} />
       </AuthProvider>
-    </ThemeProvider>
+    </ChakraProvider>
   );
 }
 
